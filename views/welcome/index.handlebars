@@ -1,14 +1,26 @@
 <p>
-  {{story.body}}
+  {{#each stories as |story|}}
+  <a href="posts/{{story._id}}">{{story.body}}</a>
+  {{/each}}
 </p>
 <br />
 <hr />
 
+{{#if currentUser }}
 <a href='/posts/new'><button class="btn btn-default">Add to the story!</button></a>
+{{#if (gt currentUser.remainingVotes 0) }}
+<button class="btn btn-default">Updoots remaining: {{currentUser.remainingVotes}}</button>
+{{/if}}
+{{#if (eq currentUser.remainingVotes 0) }}
+<button class="btn btn-default" >Upvotes Reset at {{resetTime}}</button>
+
+{{/if}}
+{{else}}
+<a href='/login'><button class="btn btn-default">Sign in to add the story & vote!</button></a>
+{{/if}}
 
 <br />
 <br />
-
 
 
 <!-- display all other comments for the period by upvotes -->
@@ -17,6 +29,7 @@
 <div class='container'>  {{#each allPosts as |post| }}
     <div class='row'>
     <div class='col col-xs-1'>
+      <!-- upvote button  -->
       <form action='posts/upvote' method='get'>
         <input type='text' name='id' value="{{post._id}}" hidden='true' />
         <button type="submit" class="btn-sm btn-default">{{post.votes}} Updoots</button>
@@ -27,5 +40,5 @@
     <br />
   {{/each }}</div>
   {{else }}
-  <p class="text-danger">No posts</p>
+  <p class="text-danger">The end?</p>
 {{/if }}

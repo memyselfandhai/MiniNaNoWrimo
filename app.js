@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const _ = require("lodash");
+const moment = require("moment");
 
 // ----------------------------------------
 // Passport
@@ -11,9 +12,12 @@ const LocalStrategy = require("passport-local").Strategy;
 app.use(passport.initialize());
 
 // ----------------------------------------
-// App Variables
+// App constiables
 // ----------------------------------------
-app.locals.appName = "My App";
+app.locals.appName = "MiniNanoWriMo";
+app.locals.resetTime = moment(Date.now())
+  .add(1, "d")
+  .format("HH:mm");
 
 // ----------------------------------------
 // Express Sessions
@@ -110,12 +114,39 @@ const morganToolkit = require("morgan-toolkit")(morgan, {
 app.use(morganToolkit());
 
 // ----------------------------------------
+// Local Strategy
+// ----------------------------------------
+const User = require("./models/user");
+
+passport.use(
+  new LocalStrategy(function(email, password, done) {
+    User.findOne({ email }, function(err, user) {
+      if (err) return done(err);
+      if (!user || !user.validPassword(password)) {
+        return done(null, false, { message: "Invalid email/password" });
+      }
+      return done(null, user);
+    });
+  })
+);
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+// ----------------------------------------
 // Routes
 // ----------------------------------------
-var indexRouter = require("./routers/index");
+const indexRouter = require("./routers/index");
 app.use("/", indexRouter);
 
-var postsRouter = require("./routers/posts");
+const postsRouter = require("./routers/posts");
 app.use("/posts", postsRouter);
 
 // ----------------------------------------

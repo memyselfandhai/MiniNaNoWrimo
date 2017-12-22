@@ -1,8 +1,8 @@
 // Require mongoose and start up the REPL
 // Also require our models
-var mongoose = require("mongoose");
-var repl = require("repl").start({});
-var models = require("./models");
+const mongoose = require("mongoose");
+const repl = require("repl").start({});
+const models = require("./models");
 
 // Use our promise based connection
 // file to wrap our REPL and execute

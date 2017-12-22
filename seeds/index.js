@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
-const mongooseeder = require("mongooseeder");
-const models = require("../models");
-const { User, Post, Story } = require("../models");
+var mongoose = require("mongoose");
+var mongooseeder = require("mongooseeder");
+var models = require("../models");
+var { User, Post, Story } = require("../models");
 
 //for new names, etc.
-const faker = require("faker");
+var faker = require("faker");
 
 //for database
 var env = process.env.NODE_ENV || "development";
@@ -12,7 +12,7 @@ var config = require("./../config/mongo")[env];
 
 // Always use the MongoDB URL to allow
 // easy connection in all environments
-const mongodbUrl =
+var mongodbUrl =
   process.env.NODE_ENV === "production"
     ? process.env[config.use_env_variable]
     : `mongodb://${config.host}/${config.database}`;
@@ -23,7 +23,9 @@ mongooseeder.seed({
   clean: true,
   mongoose: mongoose,
   seeds: () => {
-    // initial sentence
+    // -----------------------
+    // initial story sentence
+    // -----------------------
     let story = [];
 
     let s = new Story({
@@ -31,8 +33,10 @@ mongooseeder.seed({
     });
     story.push(s);
 
+    // -----------------------
     // posts
-
+    // -----------------------
+    //
     let posts = [];
 
     for (var i = 0; i < 10; i++) {
@@ -45,12 +49,22 @@ mongooseeder.seed({
       posts.push(p);
     }
 
-    const promises = [];
-    const collections = [posts, story];
+    var users = [];
+    for (let i = 1; i < 11; i++) {
+      var user = new User({
+        username: `foobar${i}`,
+        email: `foobar${i}@gmail.com`,
+        password: `foobar${i}`
+      });
+      users.push(user);
+    }
+
+    var promises = [];
+    var collections = [posts, story, users];
 
     collections.forEach(collection => {
       collection.forEach(model => {
-        const promise = model.save();
+        var promise = model.save();
         promises.push(promise);
       });
     });

@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const uniqueValidator = require("mongoose-unique-validator");
 const Schema = mongoose.Schema;
-
 const deepPopulate = require("mongoose-deep-populate")(mongoose);
 
 const UserSchema = new Schema(
@@ -10,10 +9,11 @@ const UserSchema = new Schema(
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     passwordHash: { type: String, required: true },
+    remainingVotes: { type: Number, default: 10 },
     posts: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "Post"
       }
     ]
   },

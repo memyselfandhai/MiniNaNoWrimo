@@ -1,7 +1,8 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const deepPopulate = require("mongoose-deep-populate")(mongoose);
 
-var PostSchema = new Schema(
+const PostSchema = new Schema(
   {
     votes: Number,
     body: "String",
@@ -14,35 +15,15 @@ var PostSchema = new Schema(
     user: {
       type: Schema.Types.ObjectId,
       ref: "User"
-    },
-    parent: {
-      type: Schema.Types.ObjectId,
-      ref: "Post"
-    },
-    depth: {
-      type: Number,
-      default: 0
     }
   },
   {
-    timestamps: true,
-    discriminatorKey: "kind"
+    timestamps: true
   }
 );
 
-PostSchema.virtual("score").get(function() {
-  return this.votes.reduce((sum, vote) => {
-    return (sum += vote.value);
-  }, 0);
-});
+PostSchema.plugin(deepPopulate /* more on options below */);
 
-PostSchema.pre("save", function(next) {
-  if (this.parent) {
-    this.depth = this.parent.depth + 1;
-  }
-  next();
-});
-
-var Post = mongoose.model("Post", PostSchema);
+const Post = mongoose.model("Post", PostSchema);
 
 module.exports = Post;

@@ -1,7 +1,8 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const deepPopulate = require("mongoose-deep-populate")(mongoose);
 
-var StorySchema = new Schema(
+const StorySchema = new Schema(
   {
     body: String,
     posts: [
@@ -16,6 +17,8 @@ var StorySchema = new Schema(
   }
 );
 
-var Story = mongoose.model("Story", StorySchema);
+StorySchema.plugin(deepPopulate /* more on options below */);
+
+const Story = mongoose.model("Story", StorySchema);
 
 module.exports = Story;

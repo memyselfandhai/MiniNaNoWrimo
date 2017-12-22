@@ -14,26 +14,19 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="main-nav-collapse">
 
-      {{!-- Nav Links Dropdown --}}
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            {{{ glyphicon "option-vertical" }}}
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ rootPath }}">Link</a></li>
-          </ul>
-        </li>
-      </ul>
+
 
       {{!-- Links --}}
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ rootPath }}">Link</a></li>
+        <li><a href="{{ rootPath }}">Info</a></li>
+
+        {{#if currentUser }}
+        <li><a href="/logout">Sign Out</a></li>
+        {{else}}
+        <li><a href="/login">Sign in</a></li>
+        {{/if}}
+
       </ul>
 
-    </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
-

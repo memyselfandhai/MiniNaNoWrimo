@@ -1,8 +1,10 @@
-var express = require("express");
-var router = express.Router();
-var mongoose = require("mongoose");
-var models = require("./../models");
-var Post = mongoose.model("Post");
+const express = require("express");
+const router = express.Router();
+const mongoose = require("mongoose");
+const models = require("./../models");
+const User = mongoose.model("User");
+const Post = mongoose.model("Post");
+const Story = mongoose.model("Story");
 
 // ----------------------------------------
 // New
@@ -15,13 +17,13 @@ router.get("/new", (req, res) => {
 // Create
 // ----------------------------------------
 router.post("/new", (req, res) => {
-  var postParams = {
+  const postParams = {
     body: req.body.post,
     votes: 1
     // user: req.session.currentUser.id
   };
 
-  var post = new Post(postParams);
+  const post = new Post(postParams);
   post
     .save()
     .then(post => {
@@ -35,13 +37,36 @@ router.post("/new", (req, res) => {
 // Upvote
 // ----------------------------------------
 router.get("/upvote", async (req, res) => {
-  await Post.findByIdAndUpdate(
-    { _id: req.query.id },
-    {
-      $inc: { votes: 1 }
-    }
-  );
+  let user = await User.findById(req.session.passport.user);
+  if (user.remainingVotes > 0) {
+    await Post.findByIdAndUpdate(
+      { _id: req.query.id },
+      {
+        $inc: { votes: 1 }
+      }
+    );
+    await User.findByIdAndUpdate(
+      { _id: req.session.passport.user },
+      {
+        $inc: { remainingVotes: -1 }
+      }
+    );
+  }
   res.redirect("back");
+});
+
+// ----------------------------------------
+// Individual Post
+// ----------------------------------------
+router.get("/:id", async (req, res) => {
+  console.log(" STORIES ---------------");
+  console.log(await Story.findById(req.params.id).populate("post"));
+  // Y U NO POPULATE?!?!
+  //find story by id
+  //  be sure to deep populate
+  //pass to view
+  let story = await Story.findById(req.params.id).populate("post");
+  res.render("posts/show", { story });
 });
 
 module.exports = router;
