@@ -21,9 +21,9 @@
         <li><a data-toggle="modal" data-target=".bs-example-modal-md">Info</a></li>
 
         {{#if currentUser }}
-        <li><a href="/logout">Sign Out</a></li>
+          <li><a href="/logout">Sign Out</a></li>
         {{else}}
-        <li><a href="/login">Sign in</a></li>
+          <li><a href="/login">Sign in</a></li>
         {{/if}}
 
 
@@ -32,11 +32,61 @@
           <div class="modal-dialog modal-md">
             <div class="modal-content">
               <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                How this works
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> <h4>Info</h4>
               </div>
               <div class="modal-body">
-               <p>MiniNanoWriMo is an online collobartive storywriting tool where users can add their own piece to an ongoing story. Once a set number of upvotes is reached (current set at 10), the post is added to the story and the entire process starts again. Users are given 10 upvotes, and upvotes are reset either when a new post is added to the story, or 24 hours since the most recent post has been added to the story.</p>
+                <p>MiniNanoWriMo is an online collobartive storywriting tool where users can add their own piece to an ongoing story. Once a set number of upvotes is reached (current set at 10 for demonstration purposes), the post is added to the story and the entire process starts
+                  again.</p>
+                <p>
+                  <br />
+                <h4>
+                  Voting
+                </h4>
+                </p> Users are given 10 upvotes, and upvotes are reset when either...
+                <ul>
+                  <li>
+                    a new post is added to the story OR
+                  </li>
+                  <li>24 hours has passed since the most recent post has been added to the story</li>
+                </ul>
+                  Voting is cumulative, so you can pour all of your votes into a particular post if you think that one should win!
+                </p>
+                <br />
+                <h4>Users</h4>
+              <p>
+                The user database has been seeded with 100 accounts if you would like to test out the app without signing up for an account (recommended at this point). User creditials are...
+                <ul>
+                  <li>
+                    email: foobar1@gmail.com
+                  </li>
+                  <li>
+                    password: foobar1
+                  </li>
+                  <li>
+                    email: foobar2@gmail.com
+                  </li>
+                  <li>
+                    password: foobar2
+                  </li>
+                  <li>
+                    ...
+                  </li>
+                  <li>
+                    email: foobar100@gmail.com
+                  </li>
+                  <li>
+                    password: foobar100
+                  </li>
+                </ul>
+
+              </p>
+            <br/>
+
+          </br/>
+              <h4>Contact</h4>
+              <p>
+                If you have any suggestions, please drop me a line at <a href='mailto:hai.nguyen.dfw@gmail.com'>hai.nguyen.dfw@gmail.com</a>!
+              </p>
               </div>
             </div>
           </div>
@@ -44,5 +94,6 @@
 
       </ul>
 
-  </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.container-fluid -->
 </nav>

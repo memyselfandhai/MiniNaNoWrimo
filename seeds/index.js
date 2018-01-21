@@ -39,7 +39,7 @@ mongooseeder.seed({
     //
     let posts = [];
 
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 11; i++) {
       let p = new Post({
         // user: user,
         votes: 1,
@@ -50,7 +50,7 @@ mongooseeder.seed({
     }
 
     var users = [];
-    for (let i = 1; i < 11; i++) {
+    for (let i = 1; i < 101; i++) {
       var user = new User({
         username: `foobar${i}`,
         email: `foobar${i}@gmail.com`,
