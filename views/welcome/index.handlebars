@@ -29,11 +29,19 @@
 <div class='container'>  {{#each allPosts as |post| }}
     <div class='row'>
     <div class='col col-xs-1'>
-      <!-- upvote button  -->
+      <!-- upvote button for logged in user -->
+      {{#if @root.currentUser }}
       <form action='posts/upvote' method='get'>
         <input type='text' name='id' value="{{post._id}}" hidden='true' />
         <button type="submit" class="btn-sm btn-default">{{post.votes}} Updoots</button>
       </form>
+      {{else}}
+      <form action='posts/upvote' method='get'>
+        <input type='text' name='id' value="{{post._id}}" hidden='true' />
+        <button type="submit" class="btn-sm btn-default" disabled>{{post.votes}} Updoots</button>
+      </form>
+      {{/if}}
+      <!-- upvote for not logged in  -->
     </div>
     <div class='col col-xs-11 offset-xs-1'>{{post.body}} </div>
     </div>

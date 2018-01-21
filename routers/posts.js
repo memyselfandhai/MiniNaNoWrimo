@@ -5,6 +5,9 @@ const models = require("./../models");
 const User = mongoose.model("User");
 const Post = mongoose.model("Post");
 const Story = mongoose.model("Story");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+router.use(passport.initialize());
 
 // ----------------------------------------
 // New

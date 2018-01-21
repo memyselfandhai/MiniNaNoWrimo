@@ -18,13 +18,29 @@
 
       {{!-- Links --}}
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ rootPath }}">Info</a></li>
+        <li><a data-toggle="modal" data-target=".bs-example-modal-md">Info</a></li>
 
         {{#if currentUser }}
         <li><a href="/logout">Sign Out</a></li>
         {{else}}
         <li><a href="/login">Sign in</a></li>
         {{/if}}
+
+
+
+        <div class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-md">
+            <div class="modal-content">
+              <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                How this works
+              </div>
+              <div class="modal-body">
+               <p>MiniNanoWriMo is an online collobartive storywriting tool where users can add their own piece to an ongoing story. Once a set number of upvotes is reached (current set at 10), the post is added to the story and the entire process starts again. Users are given 10 upvotes, and upvotes are reset either when a new post is added to the story, or 24 hours since the most recent post has been added to the story.</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
       </ul>
 
