@@ -167,7 +167,7 @@ app.set("view engine", "handlebars");
 // ----------------------------------------
 // Server
 // ----------------------------------------
-const port = process.env.PORT || process.argv[2] || 3000;
+const port = process.env.PORT || 5000;
 const host = "localhost";
 
 let args;
