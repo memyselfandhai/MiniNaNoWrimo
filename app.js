@@ -182,6 +182,8 @@ if (require.main === module) {
   app.listen.apply(app, args);
 }
 
+app.listen(port);
+
 // ----------------------------------------
 // Error Handling
 // ----------------------------------------
