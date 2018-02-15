@@ -183,6 +183,7 @@ if (require.main === module) {
 }
 
 app.listen(port);
+console.log("process.env.PORT =>", process.env.PORT);
 
 // ----------------------------------------
 // Error Handling
