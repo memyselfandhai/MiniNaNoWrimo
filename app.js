@@ -167,7 +167,7 @@ app.set("view engine", "handlebars");
 // ----------------------------------------
 // Server
 // ----------------------------------------
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || process.argv[2] || 3000;
 const host = "localhost";
 
 let args;
@@ -182,8 +182,11 @@ if (require.main === module) {
   app.listen.apply(app, args);
 }
 
+console.log("---------------------");
+console.log("PORT => ", port);
+console.log("---------------------");
+
 app.listen(port);
-console.log("process.env.PORT =>", process.env.PORT);
 
 // ----------------------------------------
 // Error Handling
