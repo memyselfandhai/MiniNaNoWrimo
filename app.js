@@ -30,7 +30,7 @@ app.use(passport.session());
 // Mongoose
 // ----------------------------------------
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/hackathon_test_development");
+// mongoose.connect("mongodb://localhost/hackathon_test_development");
 app.use((req, res, next) => {
   if (mongoose.connection.readyState) {
     next();
