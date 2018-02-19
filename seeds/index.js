@@ -14,7 +14,7 @@ var config = require("./../config/mongo")[env];
 // easy connection in all environments
 var mongodbUrl =
   process.env.NODE_ENV === "production"
-    ? process.env[config.use_env_variable]
+    ? process.env.MONGODB_URI
     : `mongodb://${config.host}/${config.database}`;
 
 mongooseeder.seed({
