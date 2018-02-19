@@ -177,9 +177,9 @@ args.push(() => {
   console.log(`Listening: http://${host}:${port}\n`);
 });
 
-if (require.main === module) {
-  app.listen.apply(app, args);
-}
+// if (require.main === module) {
+//   app.listen.apply(app, args);
+// }
 
 console.log("---------------------");
 console.log("PORT => ", port);
