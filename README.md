@@ -1,4 +1,6 @@
-MiniNanoWriMo is supposed to emulate a writing exercise in which partners take turns writing a portion of the story, except on a larger scale. Users can submit their idea for how the story should go next (limited to 500 characters), and if their submission reaches a certain number of votes (10 in the demo), their submission gets added to the story. Once a submission is accepted, the cycle is repeated (other submissions are archived). 
+![Alt Text](./public/index.png)
+
+MiniNanoWriMo is application used to emulate a writing exercise in which partners take turns writing a portion of the story, except on a larger scale. Users can submit their idea for how the story should go next (limited to 500 characters), and if their submission reaches a certain number of votes (10 in the demo), their submission gets added to the story. Once a submission is accepted, the cycle is repeated (other submissions are archived). 
 
 
 STARTING THE APP
@@ -24,3 +26,4 @@ PASSWORD: foobar10
 4) Start the server by running ‘node app.js’ in your command line.
 
 5) You can then visit the site by navigating to ‘http://localhost:3000/' in your browser.
+
